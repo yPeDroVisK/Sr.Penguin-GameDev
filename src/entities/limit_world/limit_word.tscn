@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b3kib5wntbno3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u6r6"]
+
+[node name="LimitWord" type="StaticBody2D" unique_id=811288410]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1935713695]
+shape = SubResource("RectangleShape2D_6u6r6")
+debug_color = Color(0.22745098, 0.62352943, 0.39215687, 0.72156864)

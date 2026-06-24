@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://ml3gps2nxq7e"]
+
+[ext_resource type="Script" uid="uid://cgy16hf5abt2i" path="res://script/UI/market_ui.gd" id="1_1y4ke"]
+[ext_resource type="StyleBox" uid="uid://bk2cf7rjy7116" path="res://assets/Themes/market_theme.tres" id="2_yhwfs"]
+[ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_ysqd4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kxyby"]
+font = ExtResource("3_ysqd4")
+font_size = 18
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8m10y"]
+font = ExtResource("3_ysqd4")
+font_size = 18
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_ysqd4"]
+default_font = ExtResource("3_ysqd4")
+default_font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4g77"]
+bg_color = Color(0.6079852, 0.15254217, 9.62615e-08, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="MarketUI" type="CanvasLayer" unique_id=196656869 groups=["MarketUI"]]
+layer = 20
+script = ExtResource("1_1y4ke")
+
+[node name="BgDark" type="ColorRect" parent="." unique_id=619043186]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="PanelContainer" type="PanelContainer" parent="BgDark" unique_id=565545382]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.44400004
+anchor_right = 0.68700004
+anchor_bottom = 0.55600005
+offset_left = 0.63998413
+offset_top = 20.819977
+offset_right = 0.6399536
+offset_bottom = -20.820038
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_yhwfs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BgDark/PanelContainer" unique_id=1412092929]
+layout_mode = 2
+
+[node name="HeaderPainel" type="PanelContainer" parent="BgDark/PanelContainer/VBoxContainer" unique_id=1158590714]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BgDark/PanelContainer/VBoxContainer/HeaderPainel" unique_id=466373278]
+layout_mode = 2
+
+[node name="Tittle" type="Label" parent="BgDark/PanelContainer/VBoxContainer/HeaderPainel/HBoxContainer" unique_id=707046305]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, 0)
+text = "Market"
+label_settings = SubResource("LabelSettings_kxyby")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins" type="Label" parent="BgDark/PanelContainer/VBoxContainer/HeaderPainel/HBoxContainer" unique_id=1769582024]
+layout_mode = 2
+size_flags_horizontal = 10
+offset_transform_enabled = true
+offset_transform_position = Vector2(-5, 0)
+text = "Moedas: 0"
+label_settings = SubResource("LabelSettings_8m10y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BgDark/PanelContainer/VBoxContainer" unique_id=1398582704]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridItens" type="GridContainer" parent="BgDark/PanelContainer/VBoxContainer/MarginContainer" unique_id=1318409443]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="BtnClose" type="Button" parent="BgDark/PanelContainer/VBoxContainer" unique_id=1531569086]
+layout_mode = 2
+theme = SubResource("Theme_ysqd4")
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4g77")
+text = "Close"
+
+[connection signal="pressed" from="BgDark/PanelContainer/VBoxContainer/BtnClose" to="." method="_on_btn_close_pressed"]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c3ew5m2bkf12u"]
+
+[ext_resource type="Script" uid="uid://coxm3ggmo3q7o" path="res://script/inventory/inventory_slot_ui.gd" id="1_auito"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_auito"]
+bg_color = Color(1, 1, 1, 0.19607843)
+
+[node name="InventorySlotUi" type="Button" unique_id=17791102 groups=["InventoryUI"]]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.089
+offset_right = -64.0
+offset_bottom = -64.08
+script = ExtResource("1_auito")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1306943620]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=29102615]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="." unique_id=1939633977]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_auito")

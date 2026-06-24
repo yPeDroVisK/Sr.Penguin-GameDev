@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cdgct7vv7rdwv"]
+
+[ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="1_7o6h2"]
+
+[resource]
+font = ExtResource("1_7o6h2")
+font_size = 18
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)

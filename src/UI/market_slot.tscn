@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://3ao80w7gl50m"]
+
+[ext_resource type="Script" uid="uid://exj27qdp6qlj" path="res://script/UI/market_slot.gd" id="1_1w2vb"]
+[ext_resource type="StyleBox" uid="uid://bk2cf7rjy7116" path="res://assets/Themes/market_theme.tres" id="1_xgubf"]
+[ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_xgubf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgubf"]
+bg_color = Color(0.16862746, 0.14901961, 0.13333334, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmdnq"]
+font = ExtResource("2_xgubf")
+font_size = 25
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i72w8"]
+font = ExtResource("2_xgubf")
+font_size = 15
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7f5ns"]
+font = ExtResource("2_xgubf")
+font_size = 15
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w2vb"]
+bg_color = Color(0.3019608, 0.12941177, 0.011764706, 1)
+border_color = Color(0.2901961, 0.20392157, 0.14117648, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38v3h"]
+bg_color = Color(0.7030365, 0.5391727, 5.7756904e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2wps"]
+font = ExtResource("2_xgubf")
+font_size = 18
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmdnq"]
+bg_color = Color(0.31061277, 0.56460625, 7.70092e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2wps"]
+bg_color = Color(0.27631816, 0.71174663, 9.62615e-07, 1)
+
+[node name="MarketSlot" type="PanelContainer" unique_id=1971796229]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.07
+anchor_bottom = 0.264
+offset_right = -89.6
+offset_bottom = -190.08
+theme_override_styles/panel = ExtResource("1_xgubf")
+script = ExtResource("1_1w2vb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1298848761]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="IconPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1190408479]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xgubf")
+
+[node name="IconTexture" type="TextureRect" parent="VBoxContainer/IconPanel" unique_id=991649221]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="InfoContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=679441679]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ItemName" type="Label" parent="VBoxContainer/InfoContainer" unique_id=1913000539]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qmdnq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemDesc" type="Label" parent="VBoxContainer/InfoContainer" unique_id=1771900458]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_i72w8")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemStats" type="Label" parent="VBoxContainer/InfoContainer" unique_id=920293220]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7f5ns")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FooterPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1879476261]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1w2vb")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/FooterPanel" unique_id=733518165]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Price" type="Label" parent="VBoxContainer/FooterPanel/HBoxContainer" unique_id=89677728]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_xgubf")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_38v3h")
+label_settings = SubResource("LabelSettings_b2wps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/FooterPanel/HBoxContainer" unique_id=1229514440]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmdnq")
+
+[node name="BtnBuy" type="Button" parent="VBoxContainer/FooterPanel/HBoxContainer/PanelContainer" unique_id=950593725]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_xgubf")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_b2wps")
+flat = true

@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://d2wblej2qdafe"]
+
+[ext_resource type="Script" uid="uid://bo7esaon0o0h1" path="res://script/interact/portal.gd" id="1_1vyiq"]
+[ext_resource type="Texture2D" uid="uid://bgapt00t612ki" path="res://assets/sprites/Dimensional_Portal.png" id="1_q8bkh"]
+[ext_resource type="PackedScene" uid="uid://cm32cxfqtu281" path="res://entities/interact/interactable_area.tscn" id="2_8slpn"]
+[ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_qbpvc"]
+
+[sub_resource type="Animation" id="Animation_qbpvc"]
+resource_name = "portal"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_g2lh3"]
+resource_name = "Pulsar"
+length = 0.65
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.4369954, 1.215158, 1.4369954, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_8slpn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yuhlu"]
+resource_name = "Stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2lh3"]
+_data = {
+&"Portal": SubResource("Animation_qbpvc"),
+&"Pulsar": SubResource("Animation_g2lh3"),
+&"RESET": SubResource("Animation_8slpn"),
+&"Stop": SubResource("Animation_yuhlu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vyiq"]
+size = Vector2(14, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbpvc"]
+font = ExtResource("3_qbpvc")
+font_size = 12
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Portal" type="Node2D" unique_id=410838762]
+script = ExtResource("1_1vyiq")
+Next_Scene = "uid://74enrgbnaayw"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=235977190]
+position = Vector2(-1, 0)
+texture = ExtResource("1_q8bkh")
+hframes = 3
+vframes = 2
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=841107240]
+libraries/ = SubResource("AnimationLibrary_g2lh3")
+autoplay = &"Portal"
+
+[node name="InteractableArea" parent="." unique_id=1589413391 instance=ExtResource("2_8slpn")]
+
+[node name="CollisionShape2D" parent="InteractableArea" index="0" unique_id=535314394]
+shape = SubResource("RectangleShape2D_1vyiq")
+
+[node name="Label" parent="InteractableArea" index="1" unique_id=596403230]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -38.0
+offset_right = 25.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "[E] Portal"
+label_settings = SubResource("LabelSettings_qbpvc")
+
+[editable path="InteractableArea"]

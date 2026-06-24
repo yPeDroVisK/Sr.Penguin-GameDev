@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dductwgnx8uca"]
+
+[ext_resource type="Script" uid="uid://bsmr3of4qm6db" path="res://resources/item_data.gd" id="1_801qx"]
+[ext_resource type="Texture2D" uid="uid://br1x2hvpu2gu1" path="res://assets/sprites/Test/Sprite-0002.png" id="1_jfk2f"]
+[ext_resource type="PackedScene" uid="uid://cm32cxfqtu281" path="res://entities/interact/interactable_area.tscn" id="1_tiu6p"]
+[ext_resource type="Resource" uid="uid://ca4v0rpoofyd6" path="res://itens/arco.tres" id="2_40xgl"]
+
+[sub_resource type="GDScript" id="GDScript_jfk2f"]
+script/source = "extends Node2D
+
+@onready var interactable_area: InteractableArea = $InteractableArea
+
+@export_category(\"Market Itens\")
+@export var itens_da_loja:Array[ItemData] = []
+
+func _ready() -> void:
+	interactable_area.texto_prompt = \"[E] Loja\"
+	interactable_area.interacted.connect(_on_interact)
+	
+func _on_interact(_interactor:Node) -> void:
+	MarketUi.open_market(itens_da_loja)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_801qx"]
+size = Vector2(94, 107)
+
+[sub_resource type="LabelSettings" id="LabelSettings_40xgl"]
+font_size = 13
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Market" type="Node2D" unique_id=1330500750]
+script = SubResource("GDScript_jfk2f")
+itens_da_loja = Array[ExtResource("1_801qx")]([ExtResource("2_40xgl")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=879508532]
+texture = ExtResource("1_jfk2f")
+
+[node name="InteractableArea" parent="." unique_id=1589413391 instance=ExtResource("1_tiu6p")]
+
+[node name="CollisionShape2D" parent="InteractableArea" index="0" unique_id=535314394]
+position = Vector2(14, 10.5)
+shape = SubResource("RectangleShape2D_801qx")
+
+[node name="Label" parent="InteractableArea" index="1" unique_id=596403230]
+offset_left = -13.0
+offset_top = -43.0
+offset_right = 37.0
+offset_bottom = -20.0
+label_settings = SubResource("LabelSettings_40xgl")
+
+[editable path="InteractableArea"]

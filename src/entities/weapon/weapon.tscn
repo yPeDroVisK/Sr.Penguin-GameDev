@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ch1fafh6ssdr6"]
+
+[ext_resource type="Script" uid="uid://c3cy600w54ar8" path="res://entities/weapon/weapon.gd" id="1_4m8ho"]
+[ext_resource type="Texture2D" uid="uid://br8oyrn6e2270" path="res://assets/sprites/Test/32x32_PixelWeapons_Free.png" id="2_dmwkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
+atlas = ExtResource("2_dmwkw")
+region = Rect2(0, 224, 32, 32)
+
+[node name="Weapon" type="Node2D" unique_id=1097593090]
+scale = Vector2(5, 5)
+script = ExtResource("1_4m8ho")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1875822288]
+texture = SubResource("AtlasTexture_26q78")
+
+[node name="TimerShoot" type="Timer" parent="." unique_id=183328098]

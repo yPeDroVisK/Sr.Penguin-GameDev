@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cm32cxfqtu281"]
+
+[ext_resource type="Script" uid="uid://bop6lvhw1aiw4" path="res://script/interact/InteractableArea.gd" id="1_f5in8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wlta"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wlta"]
+font_size = 13
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InteractableArea" type="Area2D" unique_id=1589413391]
+collision_layer = 32
+script = ExtResource("1_f5in8")
+prompt_node = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=535314394]
+shape = SubResource("RectangleShape2D_3wlta")
+
+[node name="Label" type="Label" parent="." unique_id=596403230]
+offset_left = -24.0
+offset_top = -37.0
+offset_right = 26.0
+offset_bottom = -14.0
+label_settings = SubResource("LabelSettings_3wlta")
+horizontal_alignment = 1
+vertical_alignment = 1

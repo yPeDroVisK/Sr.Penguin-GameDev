@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dxxlc3tr8u6nu"]
+
+[ext_resource type="Script" uid="uid://bsmr3of4qm6db" path="res://resources/item_data.gd" id="1_173hd"]
+[ext_resource type="Texture2D" uid="uid://br8oyrn6e2270" path="res://assets/sprites/Test/32x32_PixelWeapons_Free.png" id="1_xv2sg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_173hd"]
+atlas = ExtResource("1_xv2sg")
+region = Rect2(224, 416, 32, 32)
+
+[resource]
+script = ExtResource("1_173hd")
+id = "potion_health"
+display_name = "Potion Angel"
+description = "Health"
+icon = SubResource("AtlasTexture_173hd")
+max_stack = 3
+is_usable = true
+value = 5
+heal_amount = 3
+metadata/_custom_type_script = "uid://bsmr3of4qm6db"
