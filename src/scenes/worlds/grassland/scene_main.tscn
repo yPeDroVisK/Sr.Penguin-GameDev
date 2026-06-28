@@ -17,10 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://d2wblej2qdafe" path="res://entities/interact/portal.tscn" id="14_xadma"]
 [ext_resource type="PackedScene" uid="uid://bxjbwnt5bm6la" path="res://UI/hud.tscn" id="15_cpxrv"]
 [ext_resource type="PackedScene" uid="uid://j6h1c4x7hi1a" path="res://entities/interact/coin.tscn" id="15_um6wl"]
-[ext_resource type="PackedScene" uid="uid://piy2nak024a2" path="res://UI/inventory_manager.tscn" id="17_f1hus"]
 [ext_resource type="PackedScene" uid="uid://dductwgnx8uca" path="res://entities/interact/market.tscn" id="17_t7lut"]
 [ext_resource type="Script" uid="uid://bsmr3of4qm6db" path="res://resources/item_data.gd" id="18_7s74j"]
-[ext_resource type="PackedScene" uid="uid://d00lf8wq5irdd" path="res://UI/inventory_ui.tscn" id="18_um6wl"]
 [ext_resource type="Resource" uid="uid://ca4v0rpoofyd6" path="res://itens/arco.tres" id="19_1e7ei"]
 [ext_resource type="Resource" uid="uid://dxxlc3tr8u6nu" path="res://itens/potion_health.tres" id="20_jqbxh"]
 
@@ -406,20 +404,6 @@ itens_da_loja = Array[ExtResource("18_7s74j")]([ExtResource("19_1e7ei"), ExtReso
 
 [node name="HUD" parent="." unique_id=462620323 instance=ExtResource("15_cpxrv")]
 layer = 10
-
-[node name="InventoryContainer" type="Node2D" parent="." unique_id=480386800]
-position = Vector2(27, 64)
-
-[node name="InventoryManager" parent="InventoryContainer" unique_id=1351795285 instance=ExtResource("17_f1hus")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="InventoryContainer" unique_id=1276306355]
-layer = 15
-
-[node name="InventoryUi" parent="InventoryContainer/CanvasLayer" unique_id=1520236658 instance=ExtResource("18_um6wl")]
-offset_left = 27.0
-offset_top = 64.0
-offset_right = 27.0
-offset_bottom = 64.0
 
 [editable path="LimitContainer/LimitWord"]
 [editable path="LimitContainer/LimitWord2"]

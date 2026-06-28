@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://bvnmjma2irkbr"]
+
+[ext_resource type="Script" uid="uid://b53oe2qmd73aq" path="res://script/UI/character_menu.gd" id="1_asm2b"]
+[ext_resource type="StyleBox" uid="uid://bk2cf7rjy7116" path="res://assets/Themes/market_theme.tres" id="1_tu6wi"]
+[ext_resource type="PackedScene" uid="uid://d00lf8wq5irdd" path="res://UI/inventory_ui.tscn" id="2_asm2b"]
+[ext_resource type="Texture2D" uid="uid://dtqxwa6elxmmi" path="res://assets/sprites/Penguin/Standing (16 x 16).png" id="3_tkc3l"]
+[ext_resource type="PackedScene" uid="uid://piy2nak024a2" path="res://UI/inventory_manager.tscn" id="5_tkc3l"]
+
+[node name="CharacterMenu" type="CanvasLayer" unique_id=1773102622]
+layer = 30
+script = ExtResource("1_asm2b")
+
+[node name="InventoryManager" parent="." unique_id=1351795285 instance=ExtResource("5_tkc3l")]
+
+[node name="BgDark" type="ColorRect" parent="." unique_id=1454664079]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.29411766)
+
+[node name="Root" type="PanelContainer" parent="BgDark" unique_id=446983905]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_tu6wi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BgDark/Root" unique_id=1590922260]
+layout_mode = 2
+
+[node name="TittleBar" type="HBoxContainer" parent="BgDark/Root/VBoxContainer" unique_id=43015825]
+layout_mode = 2
+
+[node name="Tittle" type="Label" parent="BgDark/Root/VBoxContainer/TittleBar" unique_id=1244863038]
+layout_mode = 2
+text = "SR. PENGUIN"
+
+[node name="Hint" type="Label" parent="BgDark/Root/VBoxContainer/TittleBar" unique_id=512343624]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "[ESC] fechar"
+
+[node name="Content" type="HBoxContainer" parent="BgDark/Root/VBoxContainer" unique_id=587602914]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content" unique_id=695130964]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+
+[node name="LeftTittle" type="Label" parent="BgDark/Root/VBoxContainer/Content/Left" unique_id=1649804500]
+layout_mode = 2
+text = "INVENTÁRIO"
+
+[node name="InventoryUi" parent="BgDark/Root/VBoxContainer/Content/Left" unique_id=1520236658 instance=ExtResource("2_asm2b")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Divider" type="VSeparator" parent="BgDark/Root/VBoxContainer/Content" unique_id=631440316]
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content" unique_id=745832105]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightTittle" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right" unique_id=1345156489]
+layout_mode = 2
+text = "PERSONAGEM"
+
+[node name="EquipArea" type="HBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right" unique_id=884639179]
+layout_mode = 2
+
+[node name="LeftSlots" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1664549827]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="WeaponSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots" unique_id=866343285]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+
+[node name="IconWeapon" type="TextureRect" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/WeaponSlot" unique_id=610441311]
+layout_mode = 2
+expand_mode = 2
+
+[node name="NameWeapon" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/WeaponSlot" unique_id=1902532009]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmorSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots" unique_id=1608070323]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+
+[node name="IconArmor" type="TextureRect" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/ArmorSlot" unique_id=1295150493]
+layout_mode = 2
+
+[node name="NameArmor" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/ArmorSlot" unique_id=1217416163]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterSprite" type="TextureRect" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1123766554]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_tkc3l")
+expand_mode = 2
+
+[node name="RightSlots" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1070187008]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="OffhandSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/RightSlots" unique_id=1445463924]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+
+[node name="AcessorySlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/RightSlots" unique_id=538108688]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right" unique_id=995991926]
+layout_mode = 2
+
+[node name="HpRow" type="HBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/Stats" unique_id=334194065]
+layout_mode = 2
+
+[node name="Hp" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/HpRow" unique_id=1493754449]
+layout_mode = 2
+text = "♥ Health"
+
+[node name="HpLabel" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/HpRow" unique_id=1342566379]
+layout_mode = 2
+
+[node name="CoinsRow" type="HBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/Stats" unique_id=939517361]
+layout_mode = 2
+
+[node name="Coins" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/CoinsRow" unique_id=1976657545]
+layout_mode = 2
+text = "♥ Coins"
+
+[node name="CoinsLabel" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/CoinsRow" unique_id=890854568]
+layout_mode = 2
+
+[node name="SpeedRow" type="HBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/Stats" unique_id=1768038507]
+layout_mode = 2
+
+[node name="Speed" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/SpeedRow" unique_id=943461901]
+layout_mode = 2
+text = "♥ Speed"
+
+[node name="SpeedLabel" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/SpeedRow" unique_id=1038861357]
+layout_mode = 2
+
+[node name="DmgRow" type="HBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/Stats" unique_id=270516183]
+layout_mode = 2
+
+[node name="Dmg" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/DmgRow" unique_id=1046146590]
+layout_mode = 2
+text = "♥ Damage"
+
+[node name="DmgLabel" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/Stats/DmgRow" unique_id=122403747]
+layout_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="BgDark/Root/VBoxContainer" unique_id=1851673622]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="BtnContinue" type="Button" parent="BgDark/Root/VBoxContainer/Footer" unique_id=363191820]
+layout_mode = 2
+text = "Continue"
+
+[node name="BtnRestart" type="Button" parent="BgDark/Root/VBoxContainer/Footer" unique_id=84811513]
+layout_mode = 2
+text = "Restart"
+
+[node name="BtnMenu" type="Button" parent="BgDark/Root/VBoxContainer/Footer" unique_id=1767564312]
+layout_mode = 2
+text = "Main Menu"

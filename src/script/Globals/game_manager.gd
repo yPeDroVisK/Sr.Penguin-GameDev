@@ -2,11 +2,17 @@ extends Node
 	
 signal live_update(new_value:int)
 signal coins_update(new_value:int)
+signal inventory_ready(inv:InventoryManager)
 	
 const MAX_LIVES:int = 5
 const STARTING_LIVES:int = 3
 	
-var inventory:InventoryManager = null
+	
+var inventory:InventoryManager = null:
+	set(value):
+		inventory = value
+		if value != null:
+			inventory_ready.emit(value)
 	
 var coins:int = 0:
 	set(value):
@@ -15,7 +21,7 @@ var coins:int = 0:
 	
 var live:int = STARTING_LIVES:
 	set(value):
-		clamp(value,0,MAX_LIVES)
+		live = clamp(value,0,MAX_LIVES)
 		live_update.emit(live)
 	
 func add_coin(amount:int) -> void:
