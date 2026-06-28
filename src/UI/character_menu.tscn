@@ -4,10 +4,13 @@
 [ext_resource type="StyleBox" uid="uid://bk2cf7rjy7116" path="res://assets/Themes/market_theme.tres" id="1_tu6wi"]
 [ext_resource type="PackedScene" uid="uid://d00lf8wq5irdd" path="res://UI/inventory_ui.tscn" id="2_asm2b"]
 [ext_resource type="Texture2D" uid="uid://dtqxwa6elxmmi" path="res://assets/sprites/Penguin/Standing (16 x 16).png" id="3_tkc3l"]
+[ext_resource type="PackedScene" uid="uid://piy2nak024a2" path="res://UI/inventory_manager.tscn" id="5_tkc3l"]
 
 [node name="CharacterMenu" type="CanvasLayer" unique_id=1773102622]
 layer = 30
 script = ExtResource("1_asm2b")
+
+[node name="InventoryManager" parent="." unique_id=1351795285 instance=ExtResource("5_tkc3l")]
 
 [node name="BgDark" type="ColorRect" parent="." unique_id=1454664079]
 anchors_preset = 15
@@ -22,12 +25,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.125
-anchor_bottom = 1.166
-offset_left = -389.0
-offset_top = -240.0
-offset_right = -389.0
-offset_bottom = -239.52002
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_tu6wi")
@@ -52,8 +55,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Left" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content" unique_id=695130964]
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
 
 [node name="LeftTittle" type="Label" parent="BgDark/Root/VBoxContainer/Content/Left" unique_id=1649804500]
 layout_mode = 2
@@ -61,6 +65,7 @@ text = "INVENTÁRIO"
 
 [node name="InventoryUi" parent="BgDark/Root/VBoxContainer/Content/Left" unique_id=1520236658 instance=ExtResource("2_asm2b")]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Divider" type="VSeparator" parent="BgDark/Root/VBoxContainer/Content" unique_id=631440316]
 layout_mode = 2
@@ -68,6 +73,7 @@ layout_mode = 2
 [node name="Right" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content" unique_id=745832105]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="RightTittle" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right" unique_id=1345156489]
 layout_mode = 2
@@ -77,6 +83,7 @@ text = "PERSONAGEM"
 layout_mode = 2
 
 [node name="LeftSlots" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1664549827]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
 [node name="WeaponSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots" unique_id=866343285]
@@ -85,9 +92,12 @@ layout_mode = 2
 
 [node name="IconWeapon" type="TextureRect" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/WeaponSlot" unique_id=610441311]
 layout_mode = 2
+expand_mode = 2
 
 [node name="NameWeapon" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/WeaponSlot" unique_id=1902532009]
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ArmorSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots" unique_id=1608070323]
 custom_minimum_size = Vector2(90, 60)
@@ -98,19 +108,27 @@ layout_mode = 2
 
 [node name="NameArmor" type="Label" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/LeftSlots/ArmorSlot" unique_id=1217416163]
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CharacterSprite" type="TextureRect" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1123766554]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("3_tkc3l")
 expand_mode = 2
 
 [node name="RightSlots" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea" unique_id=1070187008]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
 [node name="OffhandSlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/RightSlots" unique_id=1445463924]
+custom_minimum_size = Vector2(90, 60)
 layout_mode = 2
 
 [node name="AcessorySlot" type="PanelContainer" parent="BgDark/Root/VBoxContainer/Content/Right/EquipArea/RightSlots" unique_id=538108688]
+custom_minimum_size = Vector2(90, 60)
 layout_mode = 2
 
 [node name="Stats" type="VBoxContainer" parent="BgDark/Root/VBoxContainer/Content/Right" unique_id=995991926]

@@ -80,14 +80,7 @@ func apply_knockback(attacker_position:Vector2) -> void:
 	velocity = Vector2(dir_x*knockback_force_x, knockback_force_y)
 	go_to_hurt_state()
 	hurt_timer.start(knoback_duration)
-	
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_inventory"):
-		var ui = get_tree().get_first_node_in_group("InventoryUI")
-		if ui:
-			ui.visible = !ui.visible
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
+
 func move(delta):
 	
 	var direction := Input.get_axis("move_left", "move_right")

@@ -1,13 +1,6 @@
 [gd_scene format=3 uid="uid://d00lf8wq5irdd"]
 
 [ext_resource type="Script" uid="uid://5xtq6q3giqrg" path="res://script/inventory/inventory_ui.gd" id="1_l6l0t"]
-[ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_l6l0t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_dk10o"]
-font = ExtResource("2_l6l0t")
-font_size = 18
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
 
 [node name="InventoryUi" type="Control" unique_id=1520236658 groups=["InventoryUI"]]
 layout_mode = 3
@@ -19,17 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_l6l0t")
 
 [node name="PanelContainer" type="Control" parent="." unique_id=1810405365]
-layout_mode = 1
-anchor_left = 0.38300002
-anchor_top = 0.39600003
-anchor_right = 0.614
-anchor_bottom = 0.60400003
-offset_left = -35.24002
-offset_top = -235.12003
-offset_right = -230.92004
-offset_bottom = -334.88004
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1843267363]
 layout_mode = 0
@@ -42,13 +25,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=145848011]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=721489834]
-layout_mode = 2
-text = "Inventário"
-label_settings = SubResource("LabelSettings_dk10o")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=983314089]
 layout_mode = 2

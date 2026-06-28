@@ -13,14 +13,15 @@ extends CanvasLayer
 @onready var btn_restart: Button = $BgDark/Root/VBoxContainer/Footer/BtnRestart
 @onready var btn_menu: Button = $BgDark/Root/VBoxContainer/Footer/BtnMenu
 
-const MAIN_MENU = "uid://i30ki8v5kqeu"
 var _is_open:bool = false
+const MAIN_MENU = "uid://dur8mw5le4eov"
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-	bg_dark.hide()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	bg_dark.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
+	bg_dark.hide()
 	btn_continue.pressed.connect(close_menu)
 	btn_restart.pressed.connect(_on_restart)
 	btn_menu.pressed.connect(_on_main_menu)
@@ -28,8 +29,10 @@ func _ready() -> void:
 	GameManager.coins_update.connect(_on_coins_update)
 	GameManager.live_update.connect(_on_hp_update)
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+func _input(event: InputEvent) -> void:
+
+	if event.is_action_pressed("ui_inventory"):
+		get_viewport().set_input_as_handled()
 		if _is_open: close_menu()
 		else: open_menu()
 		
@@ -92,5 +95,7 @@ func _on_restart() -> void:
 	get_tree().reload_current_scene()
 	
 func _on_main_menu() -> void:
-	get_tree().paused = false
+	close_menu()
+	await get_tree().process_frame
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file(MAIN_MENU)
