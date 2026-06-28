@@ -8,16 +8,16 @@ const SLOT_SCENE = preload("res://UI/inventory_slot_ui.tscn")
 var slot_scenes:Array = []
 
 func _ready() -> void:
+	hide()
 	
-	await get_tree().process_frame
-	
-	var inv = GameManager.inventory
-	if inv == null:
-		push_error("InventoryUI: GameManager.inventory está null")
+	if GameManager.inventory != null:
+		setup(GameManager.inventory)
 		return
 	
+	GameManager.inventory_ready.connect(_on_inventory_ready, CONNECT_ONE_SHOT)
+	
+func _on_inventory_ready(inv:InventoryManager) -> void:
 	setup(inv)
-	hide()
 	
 func setup(inventory:InventoryManager) -> void:
 	inventory.inventory_change.connect(_refresh_ui.bind(inventory))

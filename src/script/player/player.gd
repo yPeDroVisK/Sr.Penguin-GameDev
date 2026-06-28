@@ -37,7 +37,6 @@ const JUMP_COUNT_MAX: int = 2
 	
 func _ready() -> void:
 	go_to_idle_state()
-	
 	equip_weapon()
 	
 	var inv = get_tree().get_first_node_in_group("Inventory")
@@ -82,7 +81,7 @@ func apply_knockback(attacker_position:Vector2) -> void:
 	go_to_hurt_state()
 	hurt_timer.start(knoback_duration)
 	
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_inventory"):
 		var ui = get_tree().get_first_node_in_group("InventoryUI")
 		if ui:
