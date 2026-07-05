@@ -35,7 +35,7 @@ func _create_slots(inventory:InventoryManager) -> void:
 		grid_container.add_child(slot_ui)
 		slot_scenes.append(slot_ui)
 	# Clique no slot usa o item
-		slot_ui.pressed.connect(func(): inventory.use_item(i))
+		slot_ui.pressed.connect(func(idx=i): inventory.use_item(idx))
 		
 	
 func _refresh_ui(inventory: InventoryManager) -> void:

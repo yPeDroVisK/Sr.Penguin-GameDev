@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var ground_detect: RayCast2D = $CollosionDetect/GroundDetect
 @onready var player_detect: RayCast2D = $CollosionDetect/PlayerDetect
 @onready var bone_start_position: Node2D = $BoneStartPosition
+@onready var timer_death: Timer = $TimerDeath
 
 const BONE_THROW = preload("uid://5eflorsejici")
 
@@ -85,7 +86,7 @@ func go_to_death_state():
 	#hitbox.queue_free()
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED
 	velocity = Vector2.ZERO
-	
+	timer_death.start()
 	
 func take_damage():
 	go_to_death_state()
@@ -101,3 +102,5 @@ func _on_animated_attack_animation_finished() -> void:
 		go_to_walk_state()
 		return
 	
+func _on_timer_death_timeout() -> void:
+	skeleton_sprite.queue_free()
