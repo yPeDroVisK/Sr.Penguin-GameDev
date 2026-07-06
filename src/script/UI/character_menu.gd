@@ -27,7 +27,6 @@ func _ready() -> void:
 	btn_menu.pressed.connect(_on_main_menu)
 	
 	GameManager.coins_update.connect(_on_coins_update)
-	GameManager.live_update.connect(_on_hp_update)
 	
 func _input(event: InputEvent) -> void:
 
