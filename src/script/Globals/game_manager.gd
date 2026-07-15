@@ -1,12 +1,12 @@
 extends Node
 	
-signal live_update(new_value:int)
+signal health_update(new_value:int, max_value:int)
 signal coins_update(new_value:int)
 signal inventory_ready(inv:InventoryManager)
+signal player_died()
 	
-const MAX_LIVES:int = 5
-const STARTING_LIVES:int = 3
-	
+const STARTING_HEALTH:int = 10
+const  MAX_HEALTH:int = 10
 	
 var inventory:InventoryManager = null:
 	set(value):
@@ -19,16 +19,26 @@ var coins:int = 0:
 		coins = max(value, 0)
 		coins_update.emit(coins)
 	
-var live:int = STARTING_LIVES:
-	set(value):
-		live = clamp(value,0,MAX_LIVES)
-		live_update.emit(live)
-	
 func add_coin(amount:int) -> void:
 	coins += amount
 	
-func lose_lives(amount:int) -> void:
-	live -= amount
+var health:int = 10:
+	set(value):
+		var old_health = health
+		health = clamp(value,0,MAX_HEALTH)
+		health_update.emit(health,MAX_HEALTH)
+		if health <= 0 and old_health > 0:
+			player_died.emit()
+			
+func heal(amount:int) -> void:
+	health += amount
 	
-func add_lives(amount:int) -> void:
-	live += amount
+func reset_health() -> void:
+	health = STARTING_HEALTH
+	
+func take_damage(amount:int) -> void:
+	health -= amount
+	
+
+	
+	

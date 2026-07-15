@@ -126,7 +126,7 @@ func jump_state(delta):
 			go_to_walk_state()
 		return
 	
-func hurt_state(delta):
+func hurt_state(_delta):
 	pass
 	
 func death_state(_delta):

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c4ov5o524lfck"]
 
 [ext_resource type="Script" uid="uid://det8mes6lxbxa" path="res://script/Enemies/skeleton.gd" id="1_as1re"]
-[ext_resource type="Texture2D" uid="uid://7ehev1m76wev" path="res://assets/Sprites/Skeleton/Standing_Idle (32 x 32).png" id="1_kbfeu"]
-[ext_resource type="Texture2D" uid="uid://befocco0bek3t" path="res://assets/Sprites/Skeleton/Bone_Toss (32 x 32).png" id="2_dsnb0"]
-[ext_resource type="Texture2D" uid="uid://d8d4r15kqli8" path="res://assets/Sprites/Skeleton/Hurt (32 x 32).png" id="2_hglc0"]
-[ext_resource type="Texture2D" uid="uid://b76lnoc5n38tf" path="res://assets/Sprites/Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="3_dsnb0"]
-[ext_resource type="Texture2D" uid="uid://bwdndmeyj3j3x" path="res://assets/Sprites/Skeleton/Limping_Movement (32 x 32).png" id="5_56m75"]
+[ext_resource type="Texture2D" uid="uid://fotdcn5l5o3s" path="res://assets/Sprites/Skeleton/Standing_Idle (32 x 32).png" id="1_kbfeu"]
+[ext_resource type="Texture2D" uid="uid://vhgwr28xuygb" path="res://assets/Sprites/Skeleton/Bone_Toss (32 x 32).png" id="2_dsnb0"]
+[ext_resource type="Texture2D" uid="uid://bvxltmqvbm3po" path="res://assets/Sprites/Skeleton/Hurt (32 x 32).png" id="2_hglc0"]
+[ext_resource type="Texture2D" uid="uid://ds1ix74btsi30" path="res://assets/Sprites/Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="3_dsnb0"]
+[ext_resource type="Texture2D" uid="uid://bd58na5m0mghy" path="res://assets/Sprites/Skeleton/Limping_Movement (32 x 32).png" id="5_56m75"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56m75"]
 atlas = ExtResource("2_dsnb0")
@@ -141,7 +141,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p0ifi")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -173,7 +173,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2lfb4")
 }],
-"loop": false,
+"loop": 0,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -205,7 +205,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wjhst")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -228,7 +228,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sd1go")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -287,4 +287,9 @@ collide_with_bodies = false
 [node name="BoneStartPosition" type="Node2D" parent="." unique_id=1447104872]
 position = Vector2(14, 0)
 
+[node name="TimerDeath" type="Timer" parent="." unique_id=568235156]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_attack_animation_finished"]
+[connection signal="timeout" from="TimerDeath" to="." method="_on_timer_death_timeout"]

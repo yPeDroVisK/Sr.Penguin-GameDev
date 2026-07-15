@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://ckbfak20ps7rn" path="res://assets/sprites/Coins/Coins06.png" id="7_vdnig"]
 [ext_resource type="Texture2D" uid="uid://dtycvpwf6om21" path="res://assets/sprites/Coins/Coins07.png" id="8_pueji"]
 [ext_resource type="Texture2D" uid="uid://vsi4jlmcqo8q" path="res://assets/sprites/Coins/Coins08.png" id="9_4evux"]
-[ext_resource type="Texture2D" uid="uid://43lef83ujdfa" path="res://assets/sprites/Penguin/Surprised (16 x 16).png" id="11_23s3h"]
 [ext_resource type="FontFile" uid="uid://c0jkllyinklit" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="11_phrgc"]
+[ext_resource type="Texture2D" uid="uid://cmepo1u4d6qsm" path="res://assets/sprites/HealthBar/HealthBarBg.png" id="12_sab3h"]
+[ext_resource type="Texture2D" uid="uid://dcbufah3rwq6y" path="res://assets/sprites/HealthBar/HealthBarBase.png" id="13_vdnig"]
+[ext_resource type="Texture2D" uid="uid://ch4pij2ssw4sq" path="res://assets/sprites/HealthBar/HealthBarFill.png" id="14_pueji"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_508rn"]
 frames = 9
@@ -41,18 +43,6 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sab3h"]
-font = ExtResource("11_phrgc")
-font_size = 18
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_pueji"]
-font = ExtResource("11_phrgc")
-font_size = 18
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vdnig"]
 font = ExtResource("11_phrgc")
 font_size = 18
 outline_size = 8
@@ -105,26 +95,16 @@ label_settings = SubResource("LabelSettings_sab3h")
 [node name="LifeContainer" type="HBoxContainer" parent="MarginContainer" unique_id=199713001]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/LifeContainer" unique_id=180142758]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("11_23s3h")
-expand_mode = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/LifeContainer" unique_id=118578156]
 layout_mode = 2
 
-[node name="Lives" type="Label" parent="MarginContainer/LifeContainer/VBoxContainer" unique_id=369129589]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/LifeContainer/VBoxContainer" unique_id=593789052]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_pueji")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LivesCounter" type="Label" parent="MarginContainer/LifeContainer/VBoxContainer" unique_id=1187815292]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Vidas"
-label_settings = SubResource("LabelSettings_vdnig")
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.345, 0.115)
+offset_transform_scale = Vector2(1.8, 1.8)
+max_value = 10.0
+step = 0.0
+texture_under = ExtResource("12_sab3h")
+texture_over = ExtResource("13_vdnig")
+texture_progress = ExtResource("14_pueji")
