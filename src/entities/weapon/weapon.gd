@@ -3,6 +3,7 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var timer_shot: Timer = $TimerShoot
 
+
 var data:WeaponResource
 var can_fire:bool = true
 
@@ -21,3 +22,7 @@ func shoot() -> void:
 	
 func _on_timer_timeout() -> void:
 	can_fire = true
+
+func flip_weapon() -> void:
+	get_tree().get_first_node_in_group("Player")
+	
