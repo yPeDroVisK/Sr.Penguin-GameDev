@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c4ov5o524lfck"]
 
 [ext_resource type="Script" uid="uid://det8mes6lxbxa" path="res://script/Enemies/skeleton.gd" id="1_as1re"]
-[ext_resource type="Texture2D" uid="uid://fotdcn5l5o3s" path="res://assets/Sprites/Skeleton/Standing_Idle (32 x 32).png" id="1_kbfeu"]
-[ext_resource type="Texture2D" uid="uid://vhgwr28xuygb" path="res://assets/Sprites/Skeleton/Bone_Toss (32 x 32).png" id="2_dsnb0"]
-[ext_resource type="Texture2D" uid="uid://bvxltmqvbm3po" path="res://assets/Sprites/Skeleton/Hurt (32 x 32).png" id="2_hglc0"]
-[ext_resource type="Texture2D" uid="uid://ds1ix74btsi30" path="res://assets/Sprites/Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="3_dsnb0"]
-[ext_resource type="Texture2D" uid="uid://bd58na5m0mghy" path="res://assets/Sprites/Skeleton/Limping_Movement (32 x 32).png" id="5_56m75"]
+[ext_resource type="Texture2D" uid="uid://fotdcn5l5o3s" path="res://assets/sprites/Skeleton/Standing_Idle (32 x 32).png" id="1_kbfeu"]
+[ext_resource type="Texture2D" uid="uid://vhgwr28xuygb" path="res://assets/sprites/Skeleton/Bone_Toss (32 x 32).png" id="2_dsnb0"]
+[ext_resource type="Texture2D" uid="uid://bvxltmqvbm3po" path="res://assets/sprites/Skeleton/Hurt (32 x 32).png" id="2_hglc0"]
+[ext_resource type="Texture2D" uid="uid://ds1ix74btsi30" path="res://assets/sprites/Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="3_dsnb0"]
+[ext_resource type="Texture2D" uid="uid://bd58na5m0mghy" path="res://assets/sprites/Skeleton/Limping_Movement (32 x 32).png" id="5_56m75"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56m75"]
 atlas = ExtResource("2_dsnb0")

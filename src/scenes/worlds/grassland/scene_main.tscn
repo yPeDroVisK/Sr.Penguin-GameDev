@@ -399,7 +399,8 @@ position = Vector2(104, 638)
 position = Vector2(451, 652)
 
 [node name="Market" parent="Entities/InteractContainer" unique_id=1330500750 instance=ExtResource("17_t7lut")]
-position = Vector2(563, 605)
+position = Vector2(543, 622)
+scale = Vector2(1.5, 1.5)
 itens_da_loja = Array[ExtResource("18_7s74j")]([ExtResource("19_1e7ei"), ExtResource("20_jqbxh")])
 
 [node name="HUD" parent="." unique_id=462620323 instance=ExtResource("15_cpxrv")]
