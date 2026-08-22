@@ -53,7 +53,6 @@ func close_menu() -> void:
 func _refresh_all() -> void:
 	_on_coins_update(GameManager.coins)
 	_on_hp_update(GameManager.health)
-	_refresh_weapon()
 	_refresh_speed()
 	
 func _on_coins_update(value:int) -> void:
@@ -62,32 +61,13 @@ func _on_coins_update(value:int) -> void:
 func _on_hp_update(value:int) -> void:
 	hp_label.text = "%d / %d" % [value, GameManager.MAX_HEALTH]
 	
-func _refresh_weapon() -> void:
-	var player = get_tree().get_first_node_in_group("Player")
-	if player == null or player.current_weapon == null:
-		name_weapon.text = "-"
-		icon_weapon.texture = null
-		return
-		
-	var sprite = player.current_weapon.get_node_or_null("Sprite2D")
-	if sprite:
-		icon_weapon.texture = sprite.texture
-		
-	if player.current_weapon.get("data") and player.current_weapon.data is WeaponResource:
-		name_weapon.text = player.current_weapon.data.name
-	else:
-		name_weapon.text = "Equipada"
 	
 func _refresh_speed() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
 		speed_label.text = str(player.speed)
 		
-		if player.current_weapon and player.current_weapon.get("data"):
-			dmg_label.text = str(player.current_weapon.data.damage)
-		else:
-			dmg_label.text = "0"
-			
+	
 func _on_restart() -> void:
 	close_menu()
 	await  get_tree().process_frame
