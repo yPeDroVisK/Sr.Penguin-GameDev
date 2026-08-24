@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var hurt_timer: Timer = $HurtTimer
-@onready var weapon_marker: Marker2D = $WeaponPoint/WeaponMarker
 
 @export_category("Movement")
 @export var speed := 150
@@ -17,8 +16,7 @@ extends CharacterBody2D
 @export var knockback_force_y:float = -180.0
 @export var knoback_duration:float = 0.2
 
-@export_category("WeaponTest")
-@export var weapon_scene:PackedScene
+
 
 
 enum PlayerStates {
@@ -29,7 +27,7 @@ enum PlayerStates {
 	HURT,
 	DEATH
 }
-var current_weapon:Node2D = null
+
 var status:PlayerStates
 var facing_right:bool = true
 var jump_count : int = 0
@@ -37,7 +35,7 @@ const JUMP_COUNT_MAX: int = 2
 	
 func _ready() -> void:
 	go_to_idle_state()
-	equip_weapon()
+
 	
 	var inv = get_tree().get_first_node_in_group("Inventory")
 	if inv:
@@ -65,11 +63,6 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 	
-func equip_weapon() -> void:
-	if weapon_scene != null:
-		current_weapon = weapon_scene.instantiate()
-		weapon_marker.add_child(current_weapon)
-		current_weapon.position = Vector2.ZERO
 	
 func apply_knockback(attacker_position:Vector2) -> void:
 	if status == PlayerStates.DEATH:

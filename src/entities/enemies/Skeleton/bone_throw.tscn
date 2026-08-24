@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5eflorsejici"]
 
 [ext_resource type="Script" uid="uid://bhv4rfg01l8lg" path="res://script/Enemies/bone_throw.gd" id="1_6wsq5"]
-[ext_resource type="Texture2D" uid="uid://6y0liepyfvky" path="res://assets/Sprites/Skeleton/Spinning_Bone (16 x 16).png" id="2_sfusl"]
+[ext_resource type="Texture2D" uid="uid://bnfc723r00f14" path="res://assets/Sprites/Skeleton/Spinning_Bone (16 x 16).png" id="2_sfusl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v4n6c"]
 radius = 6.0827627
@@ -37,7 +37,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3ab2l")
 }],
-"loop": true,
+"loop": 1,
 "name": &"bone_throw",
 "speed": 10.0
 }]

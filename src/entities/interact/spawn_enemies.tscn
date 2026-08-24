@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://duutlvx6upbqd"]
+
+[ext_resource type="Script" uid="uid://dxmxrhhuy8eiq" path="res://script/interact/spawn.gd" id="1_c81t7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+
+[node name="SpawnEnemies" type="Area2D" unique_id=504577566]
+script = ExtResource("1_c81t7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1858138912]
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=548945087]
