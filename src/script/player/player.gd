@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var weapon_marker: Marker2D = $WeaponMarker
 
 @export_category("Movement")
 @export var speed := 150
@@ -15,9 +16,6 @@ extends CharacterBody2D
 @export var knockback_force_x:float = 250.0
 @export var knockback_force_y:float = -180.0
 @export var knoback_duration:float = 0.2
-
-
-
 
 enum PlayerStates {
 	IDLE,
@@ -32,14 +30,17 @@ var status:PlayerStates
 var facing_right:bool = true
 var jump_count : int = 0
 const JUMP_COUNT_MAX: int = 2
-	
+
+var current_weapon = null
+const WEAPON_SCENE = preload("res://entities/weapons/weapon.tscn")
+
 func _ready() -> void:
 	go_to_idle_state()
-
 	
 	var inv = get_tree().get_first_node_in_group("Inventory")
 	if inv:
 		GameManager.inventory = inv
+	_setup()
 	
 func _physics_process(delta: float) -> void:
 		
@@ -63,6 +64,19 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 	
+func _setup() -> void:
+	current_weapon = WEAPON_SCENE.instantiate()
+	weapon_marker.add_child(current_weapon)
+	if GameManager.selected_weapon:
+		current_weapon.config(GameManager.selected_weapon)
+	current_weapon.attack_finished.connect(_on_weapon_attack_finished)
+	
+	var test_weapon:WeaponResource = preload("res://itens/weapons/iron_sword.tres")
+	current_weapon.config(test_weapon)
+	
+func _on_weapon_attack_finished() -> void:
+	if status == PlayerStates.ATTACK:
+		go_to_idle_state()
 	
 func apply_knockback(attacker_position:Vector2) -> void:
 	if status == PlayerStates.DEATH:
@@ -73,7 +87,7 @@ func apply_knockback(attacker_position:Vector2) -> void:
 	velocity = Vector2(dir_x*knockback_force_x, knockback_force_y)
 	go_to_hurt_state()
 	hurt_timer.start(knoback_duration)
-
+	
 func move(delta):
 	
 	var direction := Input.get_axis("move_left", "move_right")
@@ -93,6 +107,12 @@ func idle_state(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		go_to_jump_state()
 		return
+		
+	if Input.is_action_just_pressed("attack") and current_weapon and current_weapon.can_attack:
+		go_to_attack_state()
+		var dir = 1 if facing_right else -1
+		current_weapon.attack(dir)
+		return
 	
 func walk_state(delta):
 	move(delta)
@@ -102,6 +122,12 @@ func walk_state(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		go_to_jump_state()
+		return
+		
+	if Input.is_action_just_pressed("attack") and current_weapon and current_weapon.can_attack:
+		go_to_attack_state()
+		var dir = 1 if facing_right else -1
+		current_weapon.attack(dir)
 		return
 	
 func jump_state(delta):
@@ -117,6 +143,12 @@ func jump_state(delta):
 			go_to_idle_state()
 		else:
 			go_to_walk_state()
+		return
+		
+	if Input.is_action_just_pressed("attack") and current_weapon and current_weapon.can_attack:
+		go_to_attack_state()
+		var dir = 1 if facing_right else -1
+		current_weapon.attack(dir)
 		return
 	
 func hurt_state(_delta):
@@ -154,15 +186,14 @@ func go_to_death_state():
 	
 func go_to_attack_state():
 	status = PlayerStates.ATTACK
-	player_sprite.play("attack")
+	# player_sprite.play("attack")
 	
+# player.gd
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
-		# inimigo morre
-		area.get_parent().take_damage()
+		area.get_parent().take_damage(1)  # dano fixo do jump-attack, ou crie uma constante
 		go_to_jump_state()
 	else:
-		# player morre
 		if status != PlayerStates.DEATH and status != PlayerStates.HURT:
 			apply_knockback(area.global_position)
 	

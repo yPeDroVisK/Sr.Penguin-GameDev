@@ -4,9 +4,15 @@ signal health_update(new_value:int, max_value:int)
 signal coins_update(new_value:int)
 signal inventory_ready(inv:InventoryManager)
 signal player_died()
+signal weapon_changed(weapon:WeaponResource)
 	
 const STARTING_HEALTH:int = 10
 const  MAX_HEALTH:int = 10
+	
+var selected_weapon:WeaponResource = null:
+	set(value):
+		selected_weapon = value
+		weapon_changed.emit()
 	
 var inventory:InventoryManager = null:
 	set(value):
@@ -38,7 +44,3 @@ func reset_health() -> void:
 	
 func take_damage(amount:int) -> void:
 	health -= amount
-	
-
-	
-	

@@ -3,7 +3,6 @@ class_name ItemData
 
 # Tipo de Items
 enum ItemType {
-	WEAPON,
 	ARMOR,
 	CONSUMABLE
 }
@@ -19,6 +18,5 @@ enum ItemType {
 @export var item_type: ItemType = ItemType.CONSUMABLE
 
 # Dados extras específicos de tipo (use apenas o que precisar)
-@export var damage: int = 0              # Para armas
 @export var defense: int = 0            # Para armaduras
 @export var heal_amount: int = 0        # Para consumíveis

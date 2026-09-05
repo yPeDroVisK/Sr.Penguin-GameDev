@@ -27,14 +27,14 @@ func config(item:ItemData, current_coins:int = 0) -> void:
 	
 func _stats_item(item:ItemData) -> String:
 	match  item.item_type:
-		ItemData.ItemType.WEAPON: return "Damage: %d" % item.damage
+		# ItemData.ItemType.WEAPON: return "Damage: %d" % item.damage
 		ItemData.ItemType.ARMOR: return "Defesa: %d" % item.defense
 		ItemData.ItemType.CONSUMABLE: return "Cura %d HP" % item.heal_amount
 	return ""
 	
 func _color_stats(item:ItemData) -> Color:    
 	match item.item_type:
-		ItemData.ItemType.WEAPON:     return Color(0.91, 0.64, 0.35)  # laranja
+		# ItemData.ItemType.WEAPON:     return Color(0.91, 0.64, 0.35)  # laranja
 		ItemData.ItemType.ARMOR:      return Color(0.48, 0.71, 0.83)  # azul
 		ItemData.ItemType.CONSUMABLE: return Color(0.83, 0.35, 0.49)  # rosa
 	return Color.WHITE

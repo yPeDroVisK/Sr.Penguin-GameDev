@@ -10,11 +10,13 @@ extends CharacterBody2D
 
 const BONE_THROW = preload("uid://5eflorsejici")
 
-const SPEED = 30.0
-const JUMP_VELOCITY = -400.0
+const SPEED:float = 30.0
+const JUMP_VELOCITY:float = -400.0
+const MAX_HEALTH:int = 10
 
-var direction : int = 1
-var can_throw : bool = true
+var direction:int = 1
+var can_throw:bool = true
+var health:int = MAX_HEALTH
 
 enum SkeletonStates {
 	WALK,
@@ -88,8 +90,10 @@ func go_to_death_state():
 	velocity = Vector2.ZERO
 	timer_death.start()
 	
-func take_damage():
-	go_to_death_state()
+func take_damage(amount: int = 1) -> void:
+	health -= amount
+	if health <= 0:
+		go_to_death_state()
 	
 func throw_bone():
 	var new_bone = BONE_THROW.instantiate()

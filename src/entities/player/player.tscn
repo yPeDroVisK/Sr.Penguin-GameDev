@@ -166,6 +166,9 @@ debug_color = Color(0.64274037, 0.009776595, 0.049438186, 0.41960785)
 [node name="HurtTimer" type="Timer" parent="." unique_id=1320856565]
 one_shot = true
 
+[node name="WeaponMarker" type="Marker2D" parent="." unique_id=1698458638]
+position = Vector2(69.99999, 0)
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_tumer_timeout"]

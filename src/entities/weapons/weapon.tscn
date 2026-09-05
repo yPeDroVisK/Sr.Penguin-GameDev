@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://smpu7juyln2m"]
+
+[ext_resource type="Script" uid="uid://c81ehsjwhq451" path="res://resources/weapons/weapon.gd" id="1_c8oyq"]
+[ext_resource type="Texture2D" uid="uid://br8oyrn6e2270" path="res://assets/sprites/Test/32x32_PixelWeapons_Free.png" id="2_mky6i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsip4"]
+atlas = ExtResource("2_mky6i")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="Animation" id="Animation_mky6i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("AtlasTexture_lsip4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_der65"]
+resource_name = "swing"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("AtlasTexture_lsip4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.5931083, 1.1617683]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-19, -26.000002), Vector2(11.999997, 27)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_activate_hitbox"
+}, {
+"args": [],
+"method": &"_deactivate_hitbox"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8a67"]
+_data = {
+&"RESET": SubResource("Animation_mky6i"),
+&"swing": SubResource("Animation_der65")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fjmc"]
+
+[node name="Weapon" type="Node2D" unique_id=348952938]
+script = ExtResource("1_c8oyq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=428330603]
+libraries/ = SubResource("AnimationLibrary_l8a67")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=923709975]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_lsip4")
+
+[node name="MeleeHitbox" type="Area2D" parent="." unique_id=1013000297]
+position = Vector2(32, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox" unique_id=63011306]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_8fjmc")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=666525744]

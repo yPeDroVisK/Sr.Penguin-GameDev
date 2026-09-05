@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="SwordResource" format=3 uid="uid://dd8ikmr2c3a3x"]
+
+[ext_resource type="Script" uid="uid://pn0axw5nl1sn" path="res://resources/weapons/sword_resource.gd" id="1_dn3iv"]
+[ext_resource type="Texture2D" uid="uid://br8oyrn6e2270" path="res://assets/sprites/Test/32x32_PixelWeapons_Free.png" id="1_evs2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evs2o"]
+atlas = ExtResource("1_evs2o")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jjqi"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_dn3iv")
+weapon_name = "Iron Sword"
+damage = 5
+fire_rate = 0.1
+icon = SubResource("AtlasTexture_evs2o")
+sprite_equipped = SubResource("SpriteFrames_0jjqi")
+metadata/_custom_type_script = "uid://pn0axw5nl1sn"
