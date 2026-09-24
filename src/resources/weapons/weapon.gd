@@ -18,11 +18,14 @@ func _ready() -> void:
 	melee_hitbox.monitoring = false
 	melee_hitbox.area_entered.connect(_on_melee_hit)
 	animation_player.animation_finished.connect(_on_animation_finished)
-	
+
 func config(new_data:WeaponResource) -> void:
 	data = new_data
 	sprite_2d.texture = data.icon
 	cooldown.wait_time = data.fire_rate
+
+func set_side(direction:int) -> void:
+	scale.x = direction
 
 func attack(direction:int) -> void:
 	if not can_attack or data == null:
@@ -30,10 +33,10 @@ func attack(direction:int) -> void:
 	can_attack = false
 	cooldown.start()
 	_pending_direction = direction
-	sprite_2d.scale.x = direction
+	scale.x = direction
 	data.execute_attack(self, direction)
 
-func do_melee_swing(direction:int , _arc:float) -> void:
+func do_melee_swing(_direction:int , _arc:float) -> void:
 	animation_player.play("swing")
 
 func do_ranged_shot(proj_scene:PackedScene, proj_texture:Texture2D, proj_speed:float, direction:int) -> void:

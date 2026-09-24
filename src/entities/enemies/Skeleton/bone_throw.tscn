@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5eflorsejici"]
 
 [ext_resource type="Script" uid="uid://bhv4rfg01l8lg" path="res://script/Enemies/bone_throw.gd" id="1_6wsq5"]
-[ext_resource type="Texture2D" uid="uid://bnfc723r00f14" path="res://assets/Sprites/Skeleton/Spinning_Bone (16 x 16).png" id="2_sfusl"]
+[ext_resource type="Texture2D" uid="uid://bnfc723r00f14" path="res://assets/sprites/Skeleton/Spinning_Bone (16 x 16).png" id="2_sfusl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v4n6c"]
 radius = 6.0827627
@@ -42,8 +42,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="BoneThrow" type="Area2D" unique_id=287717238 groups=["LethalArea"]]
+[node name="BoneThrow" type="Area2D" unique_id=287717238 groups=["EnemyProjectile"]]
 collision_layer = 16
+collision_mask = 5
 script = ExtResource("1_6wsq5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1779744561]

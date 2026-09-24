@@ -2,8 +2,11 @@ extends Area2D
 
 @onready var bone_throw_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var speed = 60
-var direction = 1
+@export var damage:int = 2
+
+var speed:int = 60
+var direction:int = 1
+
 
 func _process(delta: float) -> void:
 	position.x += speed * delta * direction

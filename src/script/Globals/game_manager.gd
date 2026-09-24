@@ -25,9 +25,6 @@ var coins:int = 0:
 		coins = max(value, 0)
 		coins_update.emit(coins)
 	
-func add_coin(amount:int) -> void:
-	coins += amount
-	
 var health:int = 10:
 	set(value):
 		var old_health = health
@@ -35,7 +32,10 @@ var health:int = 10:
 		health_update.emit(health,MAX_HEALTH)
 		if health <= 0 and old_health > 0:
 			player_died.emit()
-			
+	
+func add_coin(amount:int) -> void:
+	coins += amount
+	
 func heal(amount:int) -> void:
 	health += amount
 	
@@ -44,3 +44,4 @@ func reset_health() -> void:
 	
 func take_damage(amount:int) -> void:
 	health -= amount
+	

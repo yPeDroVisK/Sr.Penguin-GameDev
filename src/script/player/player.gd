@@ -6,6 +6,11 @@ extends CharacterBody2D
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var weapon_marker: Marker2D = $WeaponMarker
 
+@export_category("Combat")
+@export var invuln_duration:float = 0.6
+@export var hurt_control_factor:float = 0.4  # 0 = sem controle, 1 = controle total
+
+
 @export_category("Movement")
 @export var speed := 150
 @export var jump_velocity := -300.0
@@ -28,8 +33,9 @@ enum PlayerStates {
 
 var status:PlayerStates
 var facing_right:bool = true
-var jump_count : int = 0
-const JUMP_COUNT_MAX: int = 2
+var jump_count:int = 0
+const JUMP_COUNT_MAX:int = 2
+var is_invulnerable:bool = false
 
 var current_weapon = null
 const WEAPON_SCENE = preload("res://entities/weapons/weapon.tscn")
@@ -66,17 +72,24 @@ func _physics_process(delta: float) -> void:
 	
 func _setup() -> void:
 	current_weapon = WEAPON_SCENE.instantiate()
-	weapon_marker.add_child(current_weapon)
+	weapon_marker.add_child(current_weapon) # Adiciona a arma atual como um nó filho do WeaponMarker
 	if GameManager.selected_weapon:
 		current_weapon.config(GameManager.selected_weapon)
 	current_weapon.attack_finished.connect(_on_weapon_attack_finished)
 	
 	var test_weapon:WeaponResource = preload("res://itens/weapons/iron_sword.tres")
 	current_weapon.config(test_weapon)
+	_update_weapon_side()
 	
 func _on_weapon_attack_finished() -> void:
 	if status == PlayerStates.ATTACK:
 		go_to_idle_state()
+	
+func _update_weapon_side() -> void:
+	var dir = 1 if facing_right else -1
+	weapon_marker.position.x = abs(weapon_marker.position.x) * dir
+	if current_weapon:
+		current_weapon.set_side(dir)
 	
 func apply_knockback(attacker_position:Vector2) -> void:
 	if status == PlayerStates.DEATH:
@@ -84,17 +97,23 @@ func apply_knockback(attacker_position:Vector2) -> void:
 	var dir_x = sign(global_position.x - attacker_position.x)
 	if dir_x == 0:
 		dir_x = -1 if facing_right else 1
-	velocity = Vector2(dir_x*knockback_force_x, knockback_force_y)
+	velocity = Vector2(dir_x * knockback_force_x, knockback_force_y)
 	go_to_hurt_state()
 	hurt_timer.start(knoback_duration)
+	_start_invulnerability()
+	
+func _start_invulnerability() -> void:
+	is_invulnerable = true
+	await get_tree().create_timer(invuln_duration).timeout
+	is_invulnerable = false
 	
 func move(delta):
-	
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
 		player_sprite.flip_h = direction < 0
 		facing_right = direction > 0
+		_update_weapon_side()
 	else:
 		velocity.x = move_toward(velocity.x, 0, desceleration * delta)
 	
@@ -151,8 +170,10 @@ func jump_state(delta):
 		current_weapon.attack(dir)
 		return
 	
-func hurt_state(_delta):
-	pass
+func hurt_state(delta):
+	move(delta)
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		go_to_jump_state()
 	
 func death_state(_delta):
 	pass
@@ -176,6 +197,7 @@ func go_to_jump_state():
 	
 func go_to_hurt_state():
 	status = PlayerStates.HURT
+	player_sprite.play("idle")
 	
 func go_to_death_state():
 	status = PlayerStates.DEATH
@@ -188,28 +210,38 @@ func go_to_attack_state():
 	status = PlayerStates.ATTACK
 	# player_sprite.play("attack")
 	
-# player.gd
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		area.get_parent().take_damage(1)  # dano fixo do jump-attack, ou crie uma constante
 		go_to_jump_state()
-	else:
-		if status != PlayerStates.DEATH and status != PlayerStates.HURT:
-			apply_knockback(area.global_position)
+	elif not is_invulnerable and status != PlayerStates.DEATH:
+		apply_knockback(area.global_position)
 	
 func hit_lethal_area():
 	go_to_death_state()
 	
+func hit_projectile(area):
+	if status == PlayerStates.DEATH:
+		return
+	var dmg = area.damage if "damage" in area else 1
+	area.queue_free()
+	if is_invulnerable:
+		return
+	GameManager.take_damage(dmg)
+	apply_knockback(area.global_position)
+	
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies"):
 		hit_enemy(area)
+	elif area.is_in_group("EnemyProjectile"):
+		hit_projectile(area)
 	elif area.is_in_group("LethalArea"):
 		hit_lethal_area()
 	
 func _on_reload_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 	
-func _on_hurt_tumer_timeout() -> void:
+func _on_hurt_timer_timeout() -> void:
 	if is_on_floor():
 		go_to_idle_state()
 	else:
