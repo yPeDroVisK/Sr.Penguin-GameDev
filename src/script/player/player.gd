@@ -210,12 +210,14 @@ func go_to_attack_state():
 	status = PlayerStates.ATTACK
 	# player_sprite.play("attack")
 	
-func hit_enemy(area: Area2D):
-	if velocity.y > 0:
-		area.get_parent().take_damage(1)  # dano fixo do jump-attack, ou crie uma constante
-		go_to_jump_state()
-	elif not is_invulnerable and status != PlayerStates.DEATH:
-		apply_knockback(area.global_position)
+func hit_enemy(area: Area2D) -> void:
+	if is_invulnerable or status == PlayerStates.DEATH:
+		return
+
+	var enemy = area.get_parent()
+	var dmg = enemy.damage if "damage" in enemy else 1
+	GameManager.take_damage(dmg)
+	apply_knockback(area.global_position)
 	
 func hit_lethal_area():
 	go_to_death_state()

@@ -244,6 +244,7 @@ size = Vector2(14, 27)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_as1re")
+Damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1517242219]
 sprite_frames = SubResource("SpriteFrames_8lvb7")

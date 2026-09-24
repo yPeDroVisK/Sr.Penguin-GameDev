@@ -14,4 +14,5 @@ func _ready() -> void:
 	update_coins(0)
 	update_health(GameManager.health,GameManager.MAX_HEALTH)
 	GameManager.coins_update.connect(update_coins)
+	GameManager.health_update.connect(update_health)
 	

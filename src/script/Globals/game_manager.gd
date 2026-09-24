@@ -30,6 +30,7 @@ var health:int = 10:
 		var old_health = health
 		health = clamp(value,0,MAX_HEALTH)
 		health_update.emit(health,MAX_HEALTH)
+		print("health_update emitido: ", health)
 		if health <= 0 and old_health > 0:
 			player_died.emit()
 	

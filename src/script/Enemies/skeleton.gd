@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 const BONE_THROW = preload("uid://5eflorsejici")
 
+@export var Damage:int = 1
+
 const SPEED:float = 30.0
 const JUMP_VELOCITY:float = -400.0
 const MAX_HEALTH:int = 10
