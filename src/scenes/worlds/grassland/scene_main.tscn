@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://bxjbwnt5bm6la" path="res://UI/hud.tscn" id="15_cpxrv"]
 [ext_resource type="PackedScene" uid="uid://j6h1c4x7hi1a" path="res://entities/interact/coin.tscn" id="15_um6wl"]
 [ext_resource type="PackedScene" uid="uid://dductwgnx8uca" path="res://entities/interact/market.tscn" id="17_t7lut"]
+[ext_resource type="Script" uid="uid://bsmr3of4qm6db" path="res://resources/item_data.gd" id="18_t7lut"]
+[ext_resource type="Resource" uid="uid://dxxlc3tr8u6nu" path="res://itens/consumable/potion_health.tres" id="19_6hwcw"]
 
 [sub_resource type="GDScript" id="GDScript_wwqha"]
 script/source = "extends Node2D
@@ -398,6 +400,7 @@ position = Vector2(451, 652)
 [node name="Market" parent="Entities/InteractContainer" unique_id=1330500750 instance=ExtResource("17_t7lut")]
 position = Vector2(543, 622)
 scale = Vector2(1.5, 1.5)
+itens_da_loja = Array[ExtResource("18_t7lut")]([ExtResource("19_6hwcw"), ExtResource("19_6hwcw"), ExtResource("19_6hwcw")])
 
 [node name="HUD" parent="." unique_id=462620323 instance=ExtResource("15_cpxrv")]
 layer = 10

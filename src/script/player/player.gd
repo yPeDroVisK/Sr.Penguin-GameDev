@@ -42,6 +42,7 @@ const WEAPON_SCENE = preload("res://entities/weapons/weapon.tscn")
 
 func _ready() -> void:
 	go_to_idle_state()
+	GameManager.player_died.connect(go_to_death_state)
 	
 	var inv = get_tree().get_first_node_in_group("Inventory")
 	if inv:
@@ -241,6 +242,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		hit_lethal_area()
 	
 func _on_reload_timer_timeout() -> void:
+	GameManager.reset_health()
 	get_tree().reload_current_scene()
 	
 func _on_hurt_timer_timeout() -> void:

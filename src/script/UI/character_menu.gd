@@ -70,6 +70,7 @@ func _refresh_speed() -> void:
 	
 func _on_restart() -> void:
 	close_menu()
+	GameManager.reset_health()
 	await  get_tree().process_frame
 	get_tree().reload_current_scene()
 	
